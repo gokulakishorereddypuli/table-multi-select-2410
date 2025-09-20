@@ -1,0 +1,11 @@
+{
+    "objectContext": {
+        "role": {
+            "@dt": {
+                "labelHint": "contextParam1",
+                "description": ""
+            },
+            "type": "string"
+        }
+      }
+}

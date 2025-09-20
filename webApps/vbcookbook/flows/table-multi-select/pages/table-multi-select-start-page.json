@@ -1,0 +1,95 @@
+{
+  "title": "Table Multi Select Recipe",
+  "description": "The starting page of the flow",
+  "variables": {
+    "currentSelectionString": {
+      "type": "string"
+    },
+    "departmentListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Department",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "page:getallDepartmentResponse"
+      }
+    },
+    "enhancedDP": {
+      "type": "any"
+    },
+    "selectedRows": {
+      "type": "any"
+    }
+  },
+  "types": {
+    "getallDepartmentResponse": {
+      "items": [
+        {
+          "departmentName": "string",
+          "id": "number",
+          "location": "number",
+          "manager": "number"
+        }
+      ]
+    }
+  },
+  "chains": {},
+  "eventListeners": {
+    "onDeselectAllButtonAction": {
+      "chains": [
+        {
+          "chain": "onDeselectAllActionChain"
+        }
+      ]
+    },
+    "onSelectSpecificRowsAction": {
+      "chains": [
+        {
+          "chain": "onSelectSpecificRowsActionChain"
+        }
+      ]
+    },
+    "ojTableSelected": {
+      "chains": [
+        {
+          "parameters": {
+            "keys": "{{ $event.detail.value.row.values ? Array.from($event.detail.value.row.values()) : [] }}",
+            "selected": "{{ $event.detail.value }}"
+          },
+          "chain": "TableSelectedChangeChain"
+        }
+      ]
+    },
+    "vbEnter": {
+      "chains": [
+        {
+          "chain": "initializeVariables",
+          "parameters": {}
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-table": {
+        "path": "ojs/ojtable"
+      },
+      "oj-checkboxset": {
+        "path": "ojs/ojcheckboxset"
+      },
+      "oj-option": {
+        "path": "ojs/ojoption"
+      },
+      "oj-label": {
+        "path": "ojs/ojlabel"
+      },
+      "oj-text-area": {
+        "path": "ojs/ojinputtext"
+      }
+    }
+  },
+  "routerFlow": "recipe"
+}

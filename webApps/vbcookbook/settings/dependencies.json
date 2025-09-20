@@ -1,0 +1,31 @@
+{
+  "component-dependencies": {
+    "oj-dyn": {
+      "version": "16.1.6",
+      "components": {
+        "form": "16.1.6",
+        "bind-field": "16.1.6",
+        "container": "16.1.6"
+      }
+    },
+    "oj-dynamic": {
+      "version": "16.1.6",
+      "components": {
+        "table": "16.1.6"
+      }
+    },
+    "oj-sp": {
+      "version": "2410.0.3",
+      "components": {
+        "collection-container": "2410.0.3",
+        "welcome-page": "2410.0.3",
+        "section": "2410.0.3",
+        "advanced-create-edit": "2410.0.3",
+        "vertical-anchor-navigator": "2410.0.3",
+        "message-unsaved-changes": "2410.0.3",
+        "create-edit-drawer-template": "2410.0.3",
+        "smart-search": "2410.0.3"
+      }
+    }
+  }
+}

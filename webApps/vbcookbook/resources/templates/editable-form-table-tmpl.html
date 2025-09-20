@@ -1,0 +1,39 @@
+<oj-bind-if test="[[row.mode === 'navigation']]">
+  <td>
+    <oj-bind-text value="[[row.data.firstName]]"></oj-bind-text>
+  </td>
+  <td>
+    <oj-bind-text value="[[row.data.lastName]]"></oj-bind-text>
+  </td>
+  <td>
+    <oj-bind-text value="[[row.data.email]]"></oj-bind-text>
+  </td>
+  <td>
+    <oj-bind-text value="[[row.data.phoneNumber]]"></oj-bind-text>
+  </td>
+  <td class="oj-sm-padding-0-vertical">
+    <oj-button chroming="borderless" on-oj-action="[[$listeners.editOjAction]]" :id="[['edit-'+$current.key]]">
+      <span class="vb-icon vb-icon-pencil"></span>
+    </oj-button>
+  </td>
+</oj-bind-if>
+<oj-bind-if test="[[row.mode === 'edit']]">
+  <td colspan="5" class="oj-form-control-default oj-sm-padding-2x">
+    <div style="margin:5px;">
+      <oj-form-layout :id="[['form-'+$current.key]]" max-columns="2" direction="row">
+        <oj-input-text label-hint="First Name" value="{{ $variables.currentRow.firstName }}" class="editable">
+        </oj-input-text>
+        <oj-input-text label-hint="Last Name" value="{{ $variables.currentRow.lastName }}" class="editable">
+        </oj-input-text>
+        <oj-input-text label-hint="Email" value="{{ $variables.currentRow.email }}" class="editable">
+        </oj-input-text>
+        <oj-input-text label-hint="Phone" value="{{ $variables.currentRow.phoneNumber }}" class="editable">
+        </oj-input-text>
+      </oj-form-layout>
+      <oj-button chroming="outlined" on-oj-action="[[$listeners.cancelOjAction]]" :id="[['cancel-'+$current.key]]">Cancel
+      </oj-button>
+      <oj-button chroming="solid" on-oj-action="[[$listeners.saveOjAction]]" :id="[['save-'+$current.key]]">
+        Save</oj-button>
+    </div>
+  </td>
+</oj-bind-if>

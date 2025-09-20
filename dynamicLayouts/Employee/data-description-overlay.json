@@ -1,0 +1,273 @@
+{
+  "addField": {
+    "actions": {
+      "type": "string",
+      "labelHint": "Actions",
+      "readonly": true,
+      "value": "dummy",
+      "dependentFields": [
+        "id"
+      ]
+
+    },
+    "departmentMock": {
+        "labelHint": "Department",
+        "componentType": "oj-select-single",
+        "type": "object",
+        "properties" : {
+            "id": {
+              "type": "number",
+              "labelHint": "id"
+            },
+            "departmentName": {
+              "type": "string",
+              "labelHint": "dept name"
+            },
+            "departmentManager": {
+              "type": "object",
+              "labelHint": "manager"
+            },
+            "locationObject": {
+              "type": "object",
+              "labelHint": "manager"
+            }
+        },
+       
+        "dataProvider": {
+          "factory": "vb/types/factories/serviceDataProviderFactory",
+          "parameters": [
+            {
+              "dataProviderOptions": {
+                "endpoint": "businessObjects/getall_Department",
+                "uriParameters": {
+                  "onlyData": "[[false]]",
+                  "fields": "[[ departmentName,id,location,manager,totalSalary,;locationObject:city;departmentManager:firstName,lastName,phoneNumber; ]]"
+                },
+                "keyAttributes": "id",
+                "itemsPath": "items"
+              }
+            }
+          ]
+        },
+        "optionsKeys": {
+          "value": "id",
+          "label": "departmentName"
+        }
+      },
+    "employeeCard": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "value": "{{ $fields.avatar.value }}",
+          "metadata": "[[ $fields.avatar.metadata ]]"
+        },
+        "email": {
+          "value": "{{ $fields.email.value }}",
+          "metadata": "[[ $fields.email.metadata ]]"
+        },
+        "fullName": {
+          "value": "{{ $fields.fullName.value }}",
+          "metadata": "[[ $fields.fullName.metadata ]]"
+        },
+        "hireDate": {
+          "value": "{{ $fields.hireDate.value }}",
+          "metadata": "[[ $fields.hireDate.metadata ]]"
+        },
+        "phoneNumber": {
+          "value": "{{ $fields.phoneNumber.value }}",
+          "metadata": "[[ $fields.phoneNumber.metadata ]]"
+        }
+      },
+      "referencedFields": [
+        "avatar",
+        "email",
+        "fullName",
+        "hireDate",
+        "phoneNumber"
+      ]
+    },
+    "employeeExperience": {
+      "type": "string",
+      "labelHint": "Employee Experience",
+      "readonly": true,
+      "value": "[[$functions.calculateEmployeeExperience($fields.hireDate.value())]]",
+      "referencedFields": [
+        "hireDate"
+      ]
+    },
+    "employmentStatus": {
+      "type": "string",
+      "labelHint": "Employment Status",
+      "componentType": "oj-radioset",
+      "dataProvider": {
+        "factory": "ojs/ojarraydataprovider",
+        "parameters": [
+          [
+            {
+              "value": "active",
+              "label": "Active"
+            },
+            {
+              "value": "pending",
+              "label": "Pending"
+            },
+            {
+              "value": "inactive",
+              "label": "Inactive"
+            }
+          ],
+          {
+            "keyAttributes": "value"
+          }
+        ]
+      }
+    },
+    "fullName": {
+      "type": "string",
+      "labelHint": "Full Name",
+      "readonly": true,
+      "referencedFields": [
+        "firstName",
+        "lastName"
+      ],
+      "value": "[[$fields.firstName.value() + ' ' + $fields.lastName.value()]]"
+    },
+    "avatar": {
+      "type": "string",
+      "labelHint": "Avatar",
+      "readonly": true,
+      "value": "[[ $componentContext.applicationPath + 'resources/images/employees/' + $fields.id.value() + '.png' ]]",
+      "referencedFields": [
+        "id"
+      ]
+    },
+    "nameVF": {
+      "type": "object",
+      "labelHint": "Name",
+      "properties": {
+        "firstName": {
+          "value": "{{ $fields.firstName.value }}",
+          "metadata": "[[ $fields.firstName.metadata ]]"
+        },
+        "id": {
+          "value": "{{ $fields.id.value }}",
+          "metadata": "[[ $fields.id.metadata ]]"
+        }
+      },
+      "referencedFields": [
+        "firstName",
+        "id"
+      ]
+    },
+    "safetyTraining": {
+      "labelHint": "Safety Training",
+      "type": "string"
+    },
+    "ethicalTraining": {
+      "labelHint": "Ethical Training",
+      "type": "string"
+    },
+    "securityTraining": {
+      "labelHint": "Security Training",
+      "type": "string"
+    },
+    "trainingVF": {
+      "type": "object",
+      "properties": {
+        "ethicalTraining": {
+          "value": "{{ $fields.ethicalTraining.value }}",
+          "metadata": "[[ $fields.ethicalTraining.metadata ]]"
+        },
+        "safetyTraining": {
+          "value": "{{ $fields.safetyTraining.value }}",
+          "metadata": "[[ $fields.safetyTraining.metadata ]]"
+        },
+        "securityTraining": {
+          "value": "{{ $fields.securityTraining.value }}",
+          "metadata": "[[ $fields.securityTraining.metadata ]]"
+        }
+      },
+      "referencedFields": [
+        "ethicalTraining",
+        "safetyTraining",
+        "securityTraining"
+      ]
+    }
+
+  },
+  "addMetadata": {},
+  "replaceMetadata": {
+    "id": {
+      "labelHint": "Avatar"
+    },
+    "$common": {
+      "review": {
+        "labelHint": "[[ $translations.app.key_review]]"
+      },
+      "departmentObject.totalSalary": {
+        "labelHint": "Total Salary"
+      },
+      "firstName": {
+        "dependentFields": [
+        "id"
+      ]
+      },
+      "salary":{
+        "layoutDiscriminant": "globalTmplSalary"
+      },
+      "job": {
+        "layoutDiscriminant": "globalJobLOV",
+        "labelHint": "Job",
+        "componentType": "oj-select-single",
+        "dataProvider": {
+          "factory": "vb/types/factories/serviceDataProviderFactory",
+          "parameters": [
+            {
+              "dataProviderOptions": {
+                "endpoint": "businessObjects/getall_Job",
+                "uriParameters": {
+                  "onlyData": "[[true]]"
+                },
+                "keyAttributes": "id",
+                "itemsPath": "items"
+              }
+            }
+          ]
+        },
+        "optionsKeys": {
+          "value": "id",
+          "label": "jobTitle"
+        }
+      },
+      "department": {
+        "labelHint": "Department",
+        "componentType": "oj-select-single",
+        "dataProvider": {
+          "factory": "vb/types/factories/serviceDataProviderFactory",
+          "parameters": [
+            {
+              "dataProviderOptions": {
+                "endpoint": "businessObjects/getall_Department",
+                "uriParameters": {
+                  "onlyData": "[[true]]"
+                },
+                "keyAttributes": "id",
+                "itemsPath": "items"
+              }
+            }
+          ]
+        },
+        "optionsKeys": {
+          "value": "id",
+          "label": "departmentName"
+        }
+      }
+
+    }
+  },
+  "translations": {
+    "app": {
+      "path": "resources/strings/app/nls/app-strings"
+    }
+  }
+}
