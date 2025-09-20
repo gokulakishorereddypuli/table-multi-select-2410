@@ -91,5 +91,5 @@
       }
     }
   },
-  "routerFlow": "recipe"
+  "routerFlow": "tms-sub-flow"
 }

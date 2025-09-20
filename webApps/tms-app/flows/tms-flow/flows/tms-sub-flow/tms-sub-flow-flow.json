@@ -1,8 +1,8 @@
 {
 
-  "id": "recipe",
+  "id": "tms-sub-flow",
   "description": "Flow main",
-  "defaultPage": "recipe-start",
+  "defaultPage": "tms-sub-flow-start",
   "chains": {},
   "services": {},
   "types": {},

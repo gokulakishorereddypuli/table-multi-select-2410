@@ -1,7 +1,7 @@
 {
-    "id": "table-multi-select",
+    "id": "tms-flow",
     "description": "Flow main",
-    "defaultPage": "table-multi-select-start",
+    "defaultPage": "tms-flow-start",
     "chains": {},
     "services": {},
     "types": {},

@@ -1,6 +1,6 @@
 {
   "pageModelVersion": "19.4.3.2",
-  "routerFlow": "table-multi-select",
+  "routerFlow": "tms-flow",
   "variables": {
     "messagesADP": {
       "type": "vb/ArrayDataProvider",
