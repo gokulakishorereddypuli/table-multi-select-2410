@@ -1,8 +1,8 @@
 {
     "vbcs.dt.version": "20250610-25.10.0",
-    "version": "2410.0.10",
+    "version": "1.0",
     "source.version": "2510",
-    "rootURL": "vbcookbook",
+    "rootURL": "tms-vis-app",
     "features": {
         "codeChainsEnabled": true
     },
